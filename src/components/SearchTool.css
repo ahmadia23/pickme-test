@@ -1,0 +1,29 @@
+.search-button {
+  width: 20%;
+  background-color: #ffb997;
+  font-size: 1rem;
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: 0.4s ease;
+  opacity: 0.8;
+}
+
+.search-button:hover {
+  background-color: #ed6ea0;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.search-tool {
+  display: flex;
+  align-items: start;
+  margin: auto 30%;
+}
+
+.search-bar {
+  width: 80%;
+}

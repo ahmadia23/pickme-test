@@ -1,0 +1,51 @@
+.saved-gifs {
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.giphy {
+  width: 18rem;
+  height: 14rem;
+  background-color: transparent;
+  padding: 0.3em;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.btn-theme {
+  background-color: #ffb997;
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  margin-inline: 6rem;
+  border-radius: 4px;
+}
+
+.btn-theme:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.btn-confirm {
+  background-color: #ffb997;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 4px;
+}
+.btn-confirm:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.theme-form {
+  display: flex;
+}
+
+.input-group {
+  border-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.4rem;
+}

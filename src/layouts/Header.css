@@ -1,6 +1,7 @@
 .header-app {
   text-align: center;
-  margin: 9em auto;
+  margin: 2em auto;
+  margin-top: 10rem;
 }
 
 .title {
@@ -9,4 +10,46 @@
 
 .subtitle {
   color: #ffb997;
+}
+
+.savings-button {
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  width: 20%;
+  background-color: #ffb997;
+  font-size: 1rem;
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: 0.4s ease;
+  opacity: 0.8;
+}
+
+.savings-button:hover {
+  background-color: #ed6ea0;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.btn-back {
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  width: 15%;
+  background-color: #d54949;
+  font-size: 1rem;
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  height: 30%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: 0.4s ease;
+}
+
+.btn-back:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
