@@ -14,7 +14,6 @@ const SearchTool = (props) => {
             onChange={props.onChange}
             value={props.value}
             data={props.data}
-            callback={(record) => console.log(record)}
             leftIcon={
               <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
             }
