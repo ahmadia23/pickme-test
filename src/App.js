@@ -10,10 +10,8 @@ import GifsList from "./components/GifsList";
 function App() {
   const [userInput, setUserInput] = useState("");
   const [gifs, setGifs] = useState([]);
-  const [gifsData, setGifsData] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [showMyGifs, setShowMyGifs] = useState(false);
-  const [gifUrl, setGifUrl] = useState("");
   const [myGifs, setMyGifs] = useState([]);
 
   const userInputHandler = (e) => {
@@ -28,19 +26,18 @@ function App() {
   const postSavingGifs = async (e) => {
     const gifCard = e.target.closest(".gif-card");
     const image = gifCard.firstChild;
-    const imageUrl = image.src;
-    const imageId = image.id;
-    setGifUrl(imageUrl);
+    const gifUrl = image.src;
+    const gifId = image.id;
     try {
       const response = await fetch(
-        "https://pickme-68b1a-default-rtdb.firebaseio.com/gifs.json",
+        `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${gifId}.json`,
         {
           headers: { "Content-Type": "application/json" },
           method: "POST",
           body: JSON.stringify({
-            gifUrl: imageUrl,
+            gifUrl: gifUrl,
             theme: "",
-            id: imageId,
+            id: gifId,
           }),
         }
       );
@@ -58,20 +55,16 @@ function App() {
     setShowMyGifs(true);
     try {
       const response = await fetch(
-        "https://pickme-68b1a-default-rtdb.firebaseio.com/gifs.json"
+        `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs.json`
       );
       if (!response.ok) {
         throw new Error("Something went wrong");
       } else {
         const resData = await response.json();
-        const updatedDataGifs = [...resData];
-        const updatedMyGifs = [...myGifs];
+        const updatedMyGifs = [];
         for (let node in resData) {
-          if (!myGifs.includes(node)) {
-            updatedMyGifs.push(resData[node]);
-          }
+          updatedMyGifs.push(resData[node]);
         }
-        setGifsData(updatedDataGifs);
         setMyGifs(updatedMyGifs);
         setShowResults(false);
       }
@@ -97,7 +90,7 @@ function App() {
   const results = gifs.map((gif) => {
     return (
       <div key={gif.id} className="gif-card">
-        <img src={gif.images.downsized.url} alt={gif.title} id={gif}></img>
+        <img src={gif.images.downsized.url} alt={gif.title} id={gif.id}></img>
         <button className="save-button" onClick={postSavingGifs}>
           <FontAwesomeIcon icon={faPlus} />
         </button>
@@ -105,11 +98,10 @@ function App() {
     );
   });
 
-  const mySavedGifs = Object.keys(gifsData).map((gif) => {
-    console.log(myGifs);
-    console.log(Object.keys(myGifs));
-    const gifObject = myGifs[gif];
-    return <SavedGifs {...gifObject} key={gifObject.id} id={gif} />;
+  const mySavedGifs = myGifs.map((gifData) => {
+    const gifArray = Object.values(gifData);
+    const gif = gifArray[0];
+    return <SavedGifs {...gif} key={gif.id} id={gif.id} />;
   });
 
   return (
