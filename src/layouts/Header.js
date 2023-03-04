@@ -1,6 +1,4 @@
 import "./Header.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
   return (
@@ -25,6 +23,3 @@ const Header = (props) => {
 };
 
 export default Header;
-{
-  /* <FontAwesomeIcon icon={faHeart} /> */
-}
