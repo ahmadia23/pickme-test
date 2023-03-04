@@ -4,8 +4,10 @@ import { useState } from "react";
 const SavedGifs = ({ gifUrl, theme, id }) => {
   const [formVisible, setFormVisible] = useState(false);
   const [newTheme, setNewTheme] = useState("");
+  const [themeChosen, setThemeChosen] = useState(false);
 
   const InputHandler = (e) => {
+    setThemeChosen(false);
     setNewTheme(e.target.value);
   };
 
@@ -15,22 +17,34 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
+    // Récupérer l'objet à mettre à jour dans la base de données
     console.log(newTheme);
     try {
-      const response = await fetch(
-        `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${id}.json`,
-        {
-          headers: { "Content-Type": "application/json" },
-          method: "PUT",
-          body: JSON.stringify({
-            theme: newTheme,
-          }),
-        }
+      const getResponse = await fetch(
+        `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${id}.json`
       );
-      if (!response.ok) {
+      const resData = await getResponse.json();
+      // extraire le corps de la réponse sous forme d'objet JSON
+      // Récupérer l'ID de l'objet à partir de la réponse
+      const firebaseId = Object.keys(resData)[0]; // le premier objet dans la liste
+      console.log(firebaseId);
+      const putResponse =
+        await // Envoyer une requête PUT pour mettre à jour l'objet dans la base de données
+        fetch(
+          `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${id}/${firebaseId}.json`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              gifUrl: gifUrl,
+              theme: newTheme,
+              id: id,
+            }),
+          }
+        );
+      if (!putResponse.ok) {
         throw new Error("Something went wrong");
       } else {
-        alert("success!");
+        setThemeChosen(true);
         setFormVisible(false);
       }
     } catch (error) {
@@ -40,11 +54,15 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
 
   return (
     <div className="saved-gifs">
-      <span>{theme}</span>
+      {themeChosen ? <span>{newTheme}</span> : <span>{theme}</span>}
       <img src={gifUrl} className="giphy" alt="gif"></img>
       <br />
       {formVisible ? (
         ""
+      ) : themeChosen ? (
+        <button className="btn-theme" onClick={addThemeHandler}>
+          Modifier le thème
+        </button>
       ) : (
         <button className="btn-theme" onClick={addThemeHandler}>
           Ajouter un thème
