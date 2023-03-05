@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactSearchBox from "react-search-box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -6,15 +6,22 @@ import "./SearchTool.css";
 
 const FIREBASEKEY = process.env.REACT_APP_FIREBASE_KEY;
 
-const SearchTool = (props) => {
-  const [userInput, setUserInput] = useState("");
+type Props = {
+  setGifs: React.Dispatch<React.SetStateAction<[]>>;
+  setShowResults: (state:boolean) => void;
+  sendInput: (input: string) => void;
+}
 
-  const userInputHandler = (e) => {
+
+const SearchTool: React.FC<Props> = (props) => {
+  const [userInput, setUserInput] = React.useState<string>("");
+
+  const userInputHandler = (e: string) => {
     setUserInput(e);
     props.setShowResults(false);
   };
 
-  const formSubmitHandler = async (e) => {
+  const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await fetch(
@@ -36,7 +43,8 @@ const SearchTool = (props) => {
           <ReactSearchBox
             placeholder="Search all the GIFs"
             onChange={userInputHandler}
-            value={userInput}
+            data={[]}
+            onSelect={()=>{}}
           />
         </div>
         <button className="search-button">

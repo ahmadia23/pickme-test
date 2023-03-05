@@ -1,21 +1,18 @@
 import "./SavedGifs.css";
 import { useState } from "react";
 
-const SavedGifs = ({ gifUrl, theme, id }) => {
+type Props = {
+  gifUrl: string,
+  theme: string,
+  id: string
+}
+
+const SavedGifs:React.FC<Props> = ({ gifUrl, theme, id }) => {
   const [formVisible, setFormVisible] = useState(false);
   const [newTheme, setNewTheme] = useState("");
   const [themeChosen, setThemeChosen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const cursorHandler = () => {
-    if (isLoading) {
-      document.body.style.cursor = "progress";
-    } else {
-      document.body.style.cursor = "auto";
-    }
-  };
-
-  const InputHandler = (e) => {
+  const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setThemeChosen(false);
     setNewTheme(e.target.value);
   };
@@ -24,7 +21,7 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
     setFormVisible(true);
   };
 
-  const fetchExistingGif = async (firebaseId) => {
+  const fetchExistingGif = async (firebaseId: string) => {
     // Envoyer une requête PUT pour mettre à jour l'objet dans la base de données
     const response = await fetch(
       `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${id}/${firebaseId}.json`,
@@ -50,11 +47,9 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
     return firebaseId;
   };
 
-  const formSubmitHandler = async (e) => {
+  const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Récupérer l'objet à mettre à jour dans la base de données
-    console.log(newTheme);
-    setIsLoading(true);
     try {
       //retrouver le gif grâce à son premier noeud égale à l'id
       const firebaseId = await fetchFirebaseId();
@@ -65,7 +60,6 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
       if (!putResponse.ok) {
         throw new Error("Something went wrong");
       } else {
-        setIsLoading(false);
         setThemeChosen(true);
         setFormVisible(false);
       }
@@ -75,7 +69,7 @@ const SavedGifs = ({ gifUrl, theme, id }) => {
   };
 
   return (
-    <div className="saved-gifs" onLoad={cursorHandler}>
+    <div className="saved-gifs" >
       {themeChosen ? <span>{newTheme}</span> : <span>{theme}</span>}
       <img src={gifUrl} className="giphy" alt="gif"></img>
       <br />
