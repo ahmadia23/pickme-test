@@ -1,19 +1,29 @@
 import "./ResultsSection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { fetchPostSaving } from "../../util/fetchHelpers";
-import { ErrorResponse } from "../../util/fetchHelpers";
+import { fetchPostSaving } from "../../utils/fetchHelpers";
+import { ErrorResponse } from "../../utils/fetchHelpers";
+import { Gif } from '../../types/gifs';
 
-const ResultsSection = ({ gifs, results, onReload, inputName }) => {
-  const postSavingGifs = async (e) => {
-    const gifCard = e.target.closest(".gif-card");
-    const image = gifCard.firstChild;
+
+
+type Props = {
+  gifs: Gif[],
+  results: number,
+  onReload: boolean,
+  inputName: string
+}
+
+const ResultsSection: React.FC<Props>  = ({ gifs, results, onReload, inputName }) => {
+  const postSavingGifs = async (e: React.FormEvent<HTMLElement>) => {
+    const gifCard = (e.target as HTMLElement).closest(".gif-card");
+    const image = gifCard.firstChild as HTMLImageElement;
     const gifUrl = image.src;
     const gifId = image.id;
     try {
       const response = await fetchPostSaving(gifId, gifUrl);
       if (!response.ok) {
-        ErrorResponse(response);
+        ErrorResponse();
       } else {
         alert("success!");
       }

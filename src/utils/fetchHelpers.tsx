@@ -2,7 +2,7 @@ export const ErrorResponse = () => {
   throw new Error("Something went wrong");
 };
 
-export const updateMyGifs = async (response) => {
+export const updateMyGifs = async (response: Response) => {
   const resData = await response.json();
   const updatedMyGifs = [];
   for (let node in resData) {
@@ -11,7 +11,7 @@ export const updateMyGifs = async (response) => {
   return updatedMyGifs;
 };
 
-export const fetchPostSaving = async (gifId, gifUrl) => {
+export const fetchPostSaving = async (gifId: string, gifUrl:string ) => {
   const response = await fetch(
     `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs/${gifId}.json`,
     {
@@ -32,7 +32,7 @@ export const fetchMyGifs = async () => {
     `https://pickme-68b1a-default-rtdb.firebaseio.com/gifs.json`
   );
   if (!response.ok) {
-    ErrorResponse(response);
+    ErrorResponse();
   } else {
     const updatedMyGifs = await updateMyGifs(response);
     return updatedMyGifs;

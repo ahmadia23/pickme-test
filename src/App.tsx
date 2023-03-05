@@ -3,16 +3,19 @@ import SearchTool from "./components/SearchTool/SearchTool";
 import ResultsSection from "./components/ResultsSection/ResultsSection";
 import { useState } from "react";
 import GifsList from "./components/GifList/GifsList";
-import { fetchMyGifs } from "./util/fetchHelpers";
+import { fetchMyGifs } from "./utils/fetchHelpers";
+import { Gif } from './types/gifs';
+
+
 
 function App() {
   const [userInput, setUserInput] = useState("");
-  const [gifs, setGifs] = useState([]);
+  const [gifs, setGifs] = useState<Gif[]>();
   const [showResults, setShowResults] = useState(false);
   const [showMyGifs, setShowMyGifs] = useState(false);
   const [myGifs, setMyGifs] = useState([]);
 
-  const inputNameHandler = (name) => {
+  const inputNameHandler = (name: string) => {
     setUserInput(name);
   };
 
@@ -45,6 +48,7 @@ function App() {
           setGifs={setGifs}
           setShowResults={setShowResults}
           sendInput={inputNameHandler}
+
         />
       )}
       {showResults && (
