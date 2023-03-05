@@ -18,10 +18,14 @@
   opacity: 1;
 }
 
+.search-button:active .search-tool {
+  margin: 2rem 30%;
+}
+
 .search-tool {
   display: flex;
   align-items: start;
-  margin: auto 30%;
+  margin: 2rem 30%;
 }
 
 .search-bar {

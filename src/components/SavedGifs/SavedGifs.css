@@ -1,13 +1,13 @@
 .saved-gifs {
-  margin: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem 0;
 }
 
 .giphy {
-  width: 18rem;
-  height: 14rem;
+  width: 16rem;
+  height: 13rem;
   background-color: transparent;
   padding: 0.3em;
   border-radius: 1rem;
