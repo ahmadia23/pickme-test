@@ -4,7 +4,8 @@ import ResultsSection from "./components/ResultsSection/ResultsSection";
 import { useState } from "react";
 import GifsList from "./components/GifList/GifsList";
 import { fetchMyGifs } from "./utils/fetchHelpers";
-import { Gif } from './types/gifs';
+import { Gif, myGif } from './types/gifs';
+
 
 
 
@@ -13,7 +14,7 @@ function App() {
   const [gifs, setGifs] = useState<Gif[]>();
   const [showResults, setShowResults] = useState(false);
   const [showMyGifs, setShowMyGifs] = useState(false);
-  const [myGifs, setMyGifs] = useState([]);
+  const [myGifs, setMyGifs] = useState<{gif: myGif}[]>([]);
 
   const inputNameHandler = (name: string) => {
     setUserInput(name);

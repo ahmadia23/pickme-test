@@ -10,7 +10,7 @@ type Props = {
 
 
 const GifsList: React.FC<Props>  = ({ myGifs }) => {
-  const [myGifsList, setMyGifsList] = useState([]);
+  const [myGifsList, setMyGifsList] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     const gifList = myGifs.map((gifData) => {

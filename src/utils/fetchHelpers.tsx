@@ -1,10 +1,14 @@
+import { myGif } from '../types/gifs';
+
+
+
 export const ErrorResponse = () => {
   throw new Error("Something went wrong");
 };
 
 export const updateMyGifs = async (response: Response) => {
   const resData = await response.json();
-  const updatedMyGifs = [];
+  const updatedMyGifs:{gif: myGif}[] = [];
   for (let node in resData) {
     updatedMyGifs.push(resData[node]);
   }
