@@ -53,7 +53,6 @@ const SavedGifs:React.FC<Props> = ({ gifUrl, theme, id }) => {
     try {
       //retrouver le gif grâce à son premier noeud égale à l'id
       const firebaseId = await fetchFirebaseId();
-      console.log(firebaseId);
 
       //faire une requête put directement sur les attributs de l'éléments
       const putResponse = await fetchExistingGif(firebaseId);
