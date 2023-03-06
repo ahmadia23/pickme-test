@@ -7,8 +7,6 @@ import { fetchMyGifs } from "./utils/fetchHelpers";
 import { Gif, myGif } from './types/gifs';
 
 
-
-
 function App() {
   const [userInput, setUserInput] = useState("");
   const [gifs, setGifs] = useState<Gif[]>();
