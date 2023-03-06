@@ -10,7 +10,6 @@ A Giphy API key. You can obtain one by signing up for a Giphy account at https:/
 #Installation
 
 1. Clone the project from GitHub by running the following command in your terminal:
-bash
 git clone https://github.com/ahmadia23/pickme-test.git
 
 
