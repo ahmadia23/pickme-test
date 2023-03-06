@@ -48,17 +48,14 @@ If you encounter any issues during installation, please check the project's READ
 
 ### Home
 
-![Alt](path to img)
-![Image](src/images/home-search.png)
+![Image](src/images/home.png)
 
 ### Search
 
-![Alt](src/images/home-search.png)
 ![Image](src/images/home-search.png)
 
 ### Library
 
-![Alt](src/images/mygifs.png)
 ![Image](src/images/mygifs.png)
 
 ### Deployment
