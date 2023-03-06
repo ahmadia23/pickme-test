@@ -44,6 +44,23 @@ npm start
 Congratulations! You have successfully installed the React project on your machine.
 If you encounter any issues during installation, please check the project's README file or reach out to the me for assistance.
 
+# Project Preview
+
+### Home
+
+![Alt](path to img)
+![Image](src/images/home-search.png)
+
+### Search
+
+![Alt](src/images/home-search.png)
+![Image](src/images/home-search.png)
+
+### Library
+
+![Alt](src/images/mygifs.png)
+![Image](src/images/mygifs.png)
+
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)

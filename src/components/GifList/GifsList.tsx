@@ -1,6 +1,6 @@
 import "./GifsList.css";
 import SavedGifs from "../SavedGifs/SavedGifs";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { myGif } from '../../types/gifs';
 
 
@@ -21,7 +21,13 @@ const GifsList: React.FC<Props>  = ({ myGifs }) => {
     setMyGifsList(gifList);
   }, [myGifs]);
 
-  return <div className="gif__save-cards">{myGifsList}</div>;
+  return(
+  <Fragment>
+    <h2 className="mygifs-title"> My favorite gifs</h2>
+      <div className="gif__save-cards">
+        {myGifsList}
+      </div>;
+  </Fragment>)
 };
 
 export default GifsList;

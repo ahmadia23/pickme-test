@@ -3,3 +3,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.mygifs-title {
+  color: #ffb997;
+  text-align: center;
+  margin: 4rem auto;
+}
