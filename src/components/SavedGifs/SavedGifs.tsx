@@ -2,12 +2,12 @@ import "./SavedGifs.css";
 import { useState } from "react";
 
 type Props = {
-  gifUrl: string,
-  theme: string,
-  id: string
-}
+  gifUrl: string;
+  theme: string;
+  id: string;
+};
 
-const SavedGifs:React.FC<Props> = ({ gifUrl, theme, id }) => {
+const SavedGifs: React.FC<Props> = ({ gifUrl, theme, id }) => {
   const [formVisible, setFormVisible] = useState(false);
   const [newTheme, setNewTheme] = useState("");
   const [themeChosen, setThemeChosen] = useState(false);
@@ -68,18 +68,16 @@ const SavedGifs:React.FC<Props> = ({ gifUrl, theme, id }) => {
   };
 
   return (
-    <div className="saved-gifs" >
+    <div className="saved-gifs">
       {themeChosen ? <span>{newTheme}</span> : <span>{theme}</span>}
       <img src={gifUrl} className="giphy" alt="gif"></img>
       <br />
-      {formVisible ? (
-        ""
-      ) : (
+      {!formVisible && (
         <button className="btn-theme" onClick={addThemeHandler}>
           Mettre un nouveau thème
         </button>
       )}
-      {formVisible ? (
+      {formVisible && (
         <form className="theme-form" onSubmit={formSubmitHandler}>
           <input
             type="text"
@@ -88,8 +86,6 @@ const SavedGifs:React.FC<Props> = ({ gifUrl, theme, id }) => {
           ></input>
           <button className="btn-confirm">Confirmer</button>
         </form>
-      ) : (
-        ""
       )}
     </div>
   );

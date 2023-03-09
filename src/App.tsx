@@ -4,15 +4,14 @@ import ResultsSection from "./components/ResultsSection/ResultsSection";
 import { useState } from "react";
 import GifsList from "./components/GifList/GifsList";
 import { fetchMyGifs } from "./utils/fetchHelpers";
-import { Gif, myGif } from './types/gifs';
-
+import { Gif, myGif } from "./types/gifs";
 
 function App() {
   const [userInput, setUserInput] = useState("");
   const [gifs, setGifs] = useState<Gif[]>();
   const [showResults, setShowResults] = useState(false);
   const [showMyGifs, setShowMyGifs] = useState(false);
-  const [myGifs, setMyGifs] = useState<{gif: myGif}[]>([]);
+  const [myGifs, setMyGifs] = useState<{ gif: myGif }[]>([]);
 
   const inputNameHandler = (name: string) => {
     setUserInput(name);
@@ -40,14 +39,11 @@ function App() {
         showButton={!showMyGifs}
         onReturn={returnToSearch}
       />
-      {showMyGifs ? (
-        ""
-      ) : (
+      {!showMyGifs && (
         <SearchTool
           setGifs={setGifs}
           setShowResults={setShowResults}
           sendInput={inputNameHandler}
-
         />
       )}
       {showResults && (
@@ -58,7 +54,7 @@ function App() {
           onReload={showResults}
         />
       )}
-      {showMyGifs ? <GifsList myGifs={myGifs}></GifsList> : ""}
+      {showMyGifs && <GifsList myGifs={myGifs}></GifsList>}
     </div>
   );
 }
